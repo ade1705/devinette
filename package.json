@@ -1,0 +1,20 @@
+{
+  "name": "ts-interfaces",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.46",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "ts-mockito": "^1.2.0",
+    "typescript": "^2.0.6"
+  }
+}
