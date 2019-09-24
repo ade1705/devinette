@@ -28,11 +28,26 @@ class ProviderController {
      * @returns {Promise<e.Response>}
      */
     getQuestions = async (request: Request, response: Response): Promise<Response> => {
-        const { provider, numberOfQuestions } = request.body;
+        const { provider, numberOfQuestions, categoryId } = request.body;
 
         try {
             const triviaProvider = this._providerFactory.getProvider(provider);
-            response.status(201).json({response: await triviaProvider.getRandomQuestions(numberOfQuestions)});
+            response.status(201).json(
+                {response: await triviaProvider.getRandomQuestions(numberOfQuestions, categoryId)}
+                );
+        } catch (error) {
+            response.status(500).json({error: error.message});
+        }
+
+        return response;
+    };
+
+    getCategories = async (request: Request, response: Response): Promise<Response> => {
+        const { provider } = request.body;
+
+        try {
+            const triviaProvider = this._providerFactory.getProvider(provider);
+            response.status(201).json({response: await triviaProvider.getCategories()});
         } catch (error) {
             response.status(500).json({error: error.message});
         }

@@ -19,20 +19,41 @@ export class OpenTriviaProvider implements ProviderInterface
     }
 
     /**
+	 * 
      * @param {number} numberOfQuestions
+     * @param {string} categoryId
      * @returns {Promise<Questions>}
      */
-	getRandomQuestions = async (numberOfQuestions: number): Promise<Questions> => {
-		const res = await this.getQuestionsFromApi(numberOfQuestions);
-		return await this._transformer.transform(res.data);
+	getRandomQuestions = async (numberOfQuestions = 10, categoryId = ''): Promise<Questions> => {
+		const res = await this.getQuestionsFromApi(numberOfQuestions, categoryId);
+		return this._transformer.transform(res.data);
 	};
 
     /**
 	 *
      * @param {number} numberOfQuestions
+     * @param {string} categoryId
      * @returns {Promise<AxiosResponse>}
      */
-	private getQuestionsFromApi(numberOfQuestions: number): Promise<AxiosResponse> {
-		return this.axios.get(`https://opentdb.com/api.php?amount=${numberOfQuestions}`);
-	}
+	private getQuestionsFromApi = (numberOfQuestions: number, categoryId: string): Promise<AxiosResponse>  =>{
+		return this.axios.get(
+			`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${categoryId}`
+		);
+	};
+
+    /**
+	 *
+     * @returns {Promise<AxiosResponse>}
+     */
+    public getCategories = async (): Promise<AxiosResponse> => {
+		return await this.getCategoriesFromApi()
+    };
+
+    /**
+	 *
+     * @returns {Promise<AxiosResponse>}
+     */
+    private getCategoriesFromApi = (): Promise<AxiosResponse> => {
+        return this.axios.get(`https://opentdb.com/api_category.php`);
+    }
 }

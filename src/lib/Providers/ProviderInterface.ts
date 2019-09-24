@@ -1,3 +1,5 @@
 export interface ProviderInterface {
-	getRandomQuestions(numberOfQuestions: number): any;
+	getRandomQuestions(numberOfQuestions: number, categoryId: string): any;
+
+	getCategories(): any
 }
