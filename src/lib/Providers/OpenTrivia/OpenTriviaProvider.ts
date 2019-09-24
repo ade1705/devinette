@@ -19,7 +19,7 @@ export class OpenTriviaProvider implements ProviderInterface
     }
 
     /**
-	 * 
+	 *
      * @param {number} numberOfQuestions
      * @param {string} categoryId
      * @returns {Promise<Questions>}

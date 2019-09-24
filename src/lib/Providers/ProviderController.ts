@@ -32,9 +32,8 @@ class ProviderController {
 
         try {
             const triviaProvider = this._providerFactory.getProvider(provider);
-            response.status(201).json(
-                {response: await triviaProvider.getRandomQuestions(numberOfQuestions, categoryId)}
-                );
+            response.status(201)
+                .json({response: await triviaProvider.getRandomQuestions(numberOfQuestions, categoryId)});
         } catch (error) {
             response.status(500).json({error: error.message});
         }
