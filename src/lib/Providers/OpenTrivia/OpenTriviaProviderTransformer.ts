@@ -4,11 +4,12 @@ import {Questions} from "../../Questions/Questions";
 export class OpenTriviaProviderTransformer {
 
     /**
-     * @param response
+     *
+     * @param {string} response
+     * @returns {Questions}
      */
-    public transform = (response: string): Questions => {
-        let responseArray = JSON.parse(response);
-        let questionsArray = responseArray.results;
+    public transform = (response: any): Questions => {
+        let questionsArray = response.results;
 
         let questions = new Questions();
 
@@ -28,8 +29,10 @@ export class OpenTriviaProviderTransformer {
     };
 
     /**
-     * @param incorrectAnswers
-     * @param correctAnswer
+     *
+     * @param {string[]} incorrectAnswers
+     * @param {string} correctAnswer
+     * @returns {string[]}
      */
     private getOptions = (incorrectAnswers: string[], correctAnswer: string): string[] => {
         let options = [];

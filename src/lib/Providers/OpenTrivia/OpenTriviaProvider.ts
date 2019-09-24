@@ -1,6 +1,7 @@
-import {ProviderInterface} from "../../ProviderInterface";
+import {ProviderInterface} from "../ProviderInterface";
 import {AxiosInstance, AxiosResponse} from "axios";
 import {OpenTriviaProviderTransformer} from "./OpenTriviaProviderTransformer";
+import {Questions} from "../../Questions/Questions";
 
 export class OpenTriviaProvider implements ProviderInterface
 {
@@ -8,25 +9,29 @@ export class OpenTriviaProvider implements ProviderInterface
 	private _transformer: OpenTriviaProviderTransformer;
 
     /**
-     * @param axios
-     * @param transformer
+	 *
+     * @param {AxiosInstance} axios
+     * @param {OpenTriviaProviderTransformer} transformer
      */
 	constructor(axios: AxiosInstance, transformer: OpenTriviaProviderTransformer) {
 		this.axios = axios;
         this._transformer = transformer;
     }
 
-	/**
-	 * @param numberOfQuestions
-	 */
-	getRandomQuestions = async (numberOfQuestions: number) => {
+    /**
+     * @param {number} numberOfQuestions
+     * @returns {Promise<Questions>}
+     */
+	getRandomQuestions = async (numberOfQuestions: number): Promise<Questions> => {
 		const res = await this.getQuestionsFromApi(numberOfQuestions);
-		return this._transformer.transform(res.data);
+		return await this._transformer.transform(res.data);
 	};
 
-	/**
-	 * @param numberOfQuestions
-	 */
+    /**
+	 *
+     * @param {number} numberOfQuestions
+     * @returns {Promise<AxiosResponse>}
+     */
 	private getQuestionsFromApi(numberOfQuestions: number): Promise<AxiosResponse> {
 		return this.axios.get(`https://opentdb.com/api.php?amount=${numberOfQuestions}`);
 	}

@@ -30,6 +30,13 @@ export class Question implements QuestionInterface{
         this._answer = value;
     }
 
+    /**
+     *
+     * @param {string} type
+     * @param {string} question
+     * @param {string[]} options
+     * @param {string} answer
+     */
     fill = (type: string, question: string, options: string[], answer: string) => {
         this._type = type;
         this._question = question;
@@ -37,8 +44,16 @@ export class Question implements QuestionInterface{
         this._answer = answer;
     };
 
+    /**
+     *
+     * @returns {string}
+     */
     getAnswer = () => this._answer;
 
+    /**
+     *
+     * @returns {string[]}
+     */
     getOptions = () => this._options;
 
 }

@@ -1,8 +1,8 @@
 import { AxiosInstance } from "axios";
 import { stubInterface, stubObject } from "ts-sinon";
-import {OpenTriviaProvider} from "../../../src/Questions/Providers/OpenTrivia/OpenTriviaProvider";
-import {OpenTriviaProviderTransformer} from "../../../src/Questions/Providers/OpenTrivia/OpenTriviaProviderTransformer";
-import {Questions} from "../../../src/Questions/Questions/Questions";
+import {OpenTriviaProvider} from "../../src/lib/Providers/OpenTrivia/OpenTriviaProvider";
+import {OpenTriviaProviderTransformer} from "../../src/lib/Providers/OpenTrivia/OpenTriviaProviderTransformer";
+import {Questions} from "../../src/lib/Questions/Questions";
 const assert = require('assert').strict;
 
 describe('Getting Questions from the API ', () => {
